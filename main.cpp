@@ -46,32 +46,32 @@ bool unionp(ll a, ll b, ll plist[], ll slist[]) {
 vector<ll> dijkstra(int start, vector<vector<pair<ll, ll>>> adj
 //        ,vector<int> & p
 ) {
-const int INF = 1000000000;
-ll n = (ll) adj.size();
-vector<ll> d;
-d.assign((unsigned long) n, INF);
+    const int INF = 1000000000;
+    ll n = (ll) adj.size();
+    vector<ll> d;
+    d.assign((unsigned long) n, INF);
 //    p.assign(n, -1);
 
-d[start] = 0;
-set<pair<ll, ll>> q;
-q.insert({0, start});
-while (!q.empty()) {
-ll v = q.begin()->second;
-q.erase(q.begin());
+    d[start] = 0;
+    set<pair<ll, ll>> q;
+    q.insert({0, start});
+    while (!q.empty()) {
+        ll v = q.begin()->second;
+        q.erase(q.begin());
 
-for (auto edge : adj[v]) {
-ll to = edge.first;
-ll len = edge.second;
+        for (auto edge : adj[v]) {
+            ll to = edge.first;
+            ll len = edge.second;
 
-if (d[v] + len < d[to]) {
-q.erase({d[to], to});
-d[to] = d[v] + len;
+            if (d[v] + len < d[to]) {
+                q.erase({d[to], to});
+                d[to] = d[v] + len;
 //                p[to] = v;
-q.insert({d[to], to});
-}
-}
-}
-return d;
+                q.insert({d[to], to});
+            }
+        }
+    }
+    return d;
 }
 
 //**************************************** MATH ******************************************
